@@ -7,4 +7,4 @@ let period;
 const  cash = 1;
 alert(cash);
 
-console.log('sda');
+console.log('цыфвы');
