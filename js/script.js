@@ -5,7 +5,6 @@ let deposit;
 let mission;
 let period;
 const  cash = 1;
-
-alert(period);
+alert(cash);
 
 console.log('sda');
