@@ -10,12 +10,19 @@ console.log(typeof income);
 console.log(typeof deposit);
 console.log(addExpenses.length);
 console.log('Период равен ' + period + ' месяцев');
-console.log('Цель заработать' + mission + 'рублей');
+console.log('Цель заработать ' + mission + ' рублей');
 let miniAddExpenes = addExpenses.toLowerCase();
 console.log(miniAddExpenes);
-let arrayExpenes = [miniAddExpenes.substring(0,8), miniAddExpenes.substring(10,15),miniAddExpenes.substring(17,24)];
-console.log(arrayExpenes);
+
+console.log(miniAddExpenes.split(', '));
 let budgetDay = money / 30;
 console.log(budgetDay);
+
+let num = 266219;
+let numString = num.toString();
+let sumNumber = numString.substr(0,1) * numString.substr(1,1) * numString.substr(2,1) * numString.substr(3,1) * numString.substr(4,1) * numString.substr(5,1);
+let sumNumPow = sumNumber ** 3;
+let sumConsole = sumNumPow.toString();
+console.log(sumConsole.substr(0,2));
 
 
