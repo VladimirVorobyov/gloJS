@@ -1,9 +1,11 @@
-var money;
-var income;
+let money;
+let income;
 let addExpenses;
 let deposit;
 let mission;
-const period = 1;
+let period;
+const  cash = 1;
 
 alert(period);
 
+console.log('sda');
