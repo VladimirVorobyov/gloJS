@@ -3,17 +3,20 @@ let money = 10;
 let income = 'Фриланс';
 let addExpenses ='Интернет, Такси, Телефон' ;
 let deposit =  true;
-let mission = 100;
+let mission = 100000000;
 let period = 5;
 
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
-console.log(addExpenses.length);
-console.log('Период равен ' + period + ' месяцев');
-console.log('Цель заработать ' + mission + ' рублей');
-console.log(addExpenses.toLowerCase().split(', '));
+const showTypeOf = function (variable){
+    return console.log(variable , typeof variable);
+};
 
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
+/*
+console.log(addExpenses.length);
+console.log(addExpenses.toLowerCase().split(', '));
+*/
 
 /*
 let num = 266219;
@@ -30,23 +33,37 @@ let expenses1 = prompt('Введите обязательную статью р�
 let amount1 = +prompt('Восколько это обойдется?');
 let expenses2 = prompt('Введите обязательную статью расходов?');
 let amount2 = +prompt('Восколько это обойдется?');
-let budgetMonth = amount1 + amount2;
-console.log(budgetMonth);
 
-console.log('Цель будет достигнута через' +  Math.ceil( mission / budgetMonth ) + ' месяцев');
-let budgetDay = budgetMonth / 30; 
+const getExpensesMonth = function(a,b){
+    return a + b;
+};
+
+console.log(getExpensesMonth(amount1,amount2));
+const getAccumulatedMonth = function( cash, cost){
+    return cash - cost;
+};
+let accumulatedMonth = getAccumulatedMonth(money,getExpensesMonth(amount1,amount2));
+const getTargetMonth = function (mission, cash){
+  return  Math.ceil( mission / cash );
+};
+
+
+console.log('Цель будет достигнута через' + getTargetMonth(mission, accumulatedMonth) + ' месяцев');
+let budgetDay = accumulatedMonth/ 30; 
 console.log ( Math.floor( budgetDay) );
-switch (true) {
- case (budgetDay >= 1200) : 
- console.log('У вас высокий доход'); 
- break;
- case (1200 > budgetDay > 600) : 
- console.log('У вас средний доход ') ;
- break;
- case (0 <= budgetDay <= 600) : 
- console.log('У вас доход ниже среднего'); 
- break;
- case (budgetDay < 0) : 
- console.log('что-то пошло не так'); 
- break;
-}
+
+const  getStatusIncome= function() {
+    switch (true) {
+        case (budgetDay >= 1200) : 
+        return ('У вас высокий доход'); 
+        case (1200 > budgetDay > 600) : 
+        return('У вас средний доход ') ;
+        case (0 <= budgetDay <= 600) : 
+        return('У вас доход ниже среднего'); 
+        case (budgetDay < 0) : 
+        return('что-то пошло не так');
+       } 
+};
+
+console.log(getStatusIncome());
+
