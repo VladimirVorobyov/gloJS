@@ -14,7 +14,7 @@ console.log('Период равен ' + period + ' месяцев');
 console.log('Цель заработать ' + mission + ' рублей');
 console.log(addExpenses.toLowerCase().split(', '));
 
-let budgetDay = money / 30;
+
 /*
 let num = 266219;
 let numString = num.toString();
@@ -33,8 +33,9 @@ let amount2 = +prompt('Восколько это обойдется?');
 let budgetMonth = amount1 + amount2;
 console.log(budgetMonth);
 
-console.log( Math.ceil(mission/(money - budgetMonth)));
-budgetDay = Math.floor((money - budgetMonth) / 30);
+console.log('Цель будет достигнута через' +  Math.ceil( mission / budgetMonth ) + ' месяцев');
+let budgetDay = budgetMonth / 30; 
+console.log ( Math.floor( budgetDay) );
 switch (true) {
  case (budgetDay >= 1200) : 
  console.log('У вас высокий доход'); 
