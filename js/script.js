@@ -83,3 +83,8 @@ console.log('расходы за месяц ' + appData.getExpensesMonth());
 console.log ( Math.floor( appData.budgetDay) );
 console.log(appData.getStatusIncome());
 console.log(appData.expenses);
+console.log('Программа включает в себя данные:');
+
+for (let item in appData) {
+    console.log("Свойство: " + item + ", его значение - " + appData[item]);
+}
