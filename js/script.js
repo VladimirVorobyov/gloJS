@@ -148,15 +148,15 @@ for (let item in appData) {
     console.log("Свойство: " + item + ", его значение - " + appData[item]);
 }
 
+appData.addExpenses.split(', ').map(word => word[0].toUpperCase() + word.substring(1)).join(', ');
+console.log(appData.addExpenses);
 // создать пустую переменную в строковом формате
-let arrayResult = "";
-
+/*let arrayResult = "";
 for (let item of appData.addExpenses) {
     item = item.toLowerCase();
     arrayResult += item.charAt(0).toUpperCase() + item.slice(1) + ', ';
 }
 arrayResult = arrayResult.slice(0, -2);
 console.log(arrayResult);
-
-
+*/
 
