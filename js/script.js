@@ -7,9 +7,9 @@ let start = document.getElementById('start'),
     additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
     depositCheck = document.querySelector('#deposit-check'),
     budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
-    budgetMonthValue = document.getElementsByClassName('budget_moth-value')[0],
+    budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
     expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
-    accumulatetdMonthValue = document.getElementsByClassName('accumulated_month-value')[0],
+    //accumulatetdMonthValue = document.getElementsByClassName('accumulated_month-value')[0],
     additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
     additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
     incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
@@ -21,7 +21,7 @@ let start = document.getElementById('start'),
     expensesItems = document.querySelectorAll('.expenses-items'),
     additionalExpenses = document.querySelector('.additional_expenses'),
     periodSelect = document.querySelector('.period-select'),
-    additionalExpensesItem = document.querySelector('.additional-expenses-item');
+    additionalExpensesItem = document.querySelector('.additional_expenses-item');
 
 
     let appData = {
@@ -46,17 +46,17 @@ let start = document.getElementById('start'),
             appData.budget = salaryAmout.value;
 
             appData.getExpenses();
-            
-            appData.getExpensesMonth();
             appData.getBudget();
+            appData.getExpensesMonth();
             appData.getAddExpenses();
+            console.log(  appData.getExpensesMonth());
             appData.getAddIncome();
             appData.showResult();
         },
         showResult: function(){
             budgetMonthValue.value = appData.budgetMoth;
             budgetDayValue.value = appData.budgetDay;
-            expensesMonthValue.value = appData.addExpensesMonth;
+            expensesMonthValue.value = appData.expensesMonth;
             additionalExpensesValue.value = appData.addExpenses.join(', ');
             additionalIncomeValue.value = appData.addIncome.join(', ');
         },
@@ -121,7 +121,7 @@ let start = document.getElementById('start'),
         },
         getBudget: function () {
                 appData.budgetMoth = appData.budget - appData.expensesMonth;
-                appData.budgetDay = appData.budgetMoth / 30;
+                appData.budgetDay = Math.floor(appData.budgetMoth / 30);
         },
         getTargetMonth: function (){
                 return appData.mission / appData.budgetMoth;
