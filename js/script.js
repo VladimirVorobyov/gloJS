@@ -3,65 +3,59 @@ let todoControl = document.querySelector('.todo-control'),
     headerInput = document.querySelector('.header-input'),
     todoList = document.querySelector('.todo-list'),
     todoCompleted = document.querySelector('.todo-completed');
-    function setCookie(key, value, year, month, day, path, domain, secure){
-        let cookieStr = encodeURI(key) + '=' + encodeURI(value);
-        if(year) {
-            const expires = new Date(year, month-1, day);
-            cookieStr += '; expires=' + expires.toGMTString();
-        }
-        cookieStr += path ? '; path=' + encodeURI(path) : '';
-        cookieStr += domain ? '; domain=' + encodeURI(domain) : '';
-        cookieStr += secure ? '; secure'  : '';
-
-        document.cookie = cookieStr;
-    }
+    
 const todoData = [
     
 ];
-
-const render = function(){
-    todoCompleted.textContent = '';
+const render = function() {
     todoList.textContent = '';
-    todoData.forEach(function(item){
+    todoCompleted.textContent = '';
+    todoData.forEach((item, i) => {
         const li = document.createElement('li');
         li.classList.add('todo-item');
-
-        li.innerHTML = '<span class="text-todo">' + item.value + '</span>'+
-        '<div class="todo-buttons">'+
-        '<button class="todo-remove"></button>' +
-        '<button class="todo-complete"></button>'+
-        '</div>';
-        if(item.completed){
+        li.innerHTML = `
+            <span class="text-todo">${item.value}</span>
+            <div class="todo-buttons">
+                <button class="todo-remove"></button>
+                <button class="todo-complete"></button>
+            </div>
+        `;
+        if(item.completed ) {
             todoCompleted.append(li);
-        }else{
+        } else {
             todoList.append(li);
-        }
-        const btnTodoComplete = li.querySelector('.todo-complete');
-
-        btnTodoComplete.addEventListener('click', function(){
-            item.completed = !item.completed;
+        } 
+        const todoRemove = li.querySelector('.todo-remove');
+        todoRemove.addEventListener('click', () => {
+            delete todoData[i];
             render();
         });
-        const btnRemove = li.querySelector('.todo-remove');
-        btnRemove.addEventListener('click',function(){
-            li.remove();
-           todoData.pop(item);
+
+        const todoCompelete = li.querySelector('.todo-complete');
+            todoCompelete.addEventListener('click', () => {
+                item.completed = !item.completed;
+                render();
+            });
             
-        });
-        localStorage.my = headerInput.value;
     });
+    let json = JSON.stringify(todoData);
+    localStorage.setItem('myText' , json);
 };
 
+
 todoControl.addEventListener('submit', function(event){
-    if(headerInput.value !== ''){
+    
     event.preventDefault();
+    JSON.parse(localStorage.getItem('myText'));
     const newTodo = {
         value: headerInput.value,
-        completed: false
+        completed: false,
     };
+    if(headerInput.value !== ''){
     todoData.push(newTodo);
+    }
     render();
     headerInput.value = '';
-    }
+
 });
 render();
