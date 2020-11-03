@@ -29,6 +29,7 @@ const render = function() {
         todoRemove.addEventListener('click', () => {
             delete todoData[i];
             render();
+            localStorage.clear(todoData[i]);
         });
 
         const todoCompelete = li.querySelector('.todo-complete');
