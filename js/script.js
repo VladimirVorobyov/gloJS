@@ -1,6 +1,7 @@
 'use strict';
 
 let start = document.getElementById('start'),
+    cancel = document.getElementById('cancel'),
     btnPlus = document.getElementsByTagName('button'),
     incomePlus = btnPlus[0],
     expensesPlus = btnPlus[1],
@@ -39,7 +40,9 @@ let start = document.getElementById('start'),
         parcentDeposit: 0,
         moneyDeposit: 0,
         start: function() {
-            if(salaryAmout.value !== ''){    
+            let appThis = appData.start.bind(appData);
+            console.log(appThis);
+            if (salaryAmout.value !== ''){    
             appData.budget = +salaryAmout.value;
             appData.getExpenses();
             appData.getIncome();
@@ -48,16 +51,24 @@ let start = document.getElementById('start'),
             appData.getAddIncome();
             appData.getBudget();
             appData.showResult();
+            start.style.display = 'none';
+            cancel.style.display = 'inline';
             }
+            
+        },
+        reset: function(){
+            [...document.querySelectorAll('section.main input[type="text"]')]
+            .forEach( el => el.value='' );
+            start.style.display = 'inline';
+            cancel.style.display = 'none';
         },
         showResult: function(){
-            budgetMonthValue.value = appData.budgetMoth;
-            budgetDayValue.value = appData.budgetDay;
-            expensesMonthValue.value = appData.expensesMonth;
-            additionalExpensesValue.value = appData.addExpenses.join(', ');
-            additionalIncomeValue.value = appData.addIncome.join(', ');
-       
-            targetMonthValue.value = Math.ceil(appData.getTargetMonth());
+            budgetMonthValue.value = this.budgetMoth;
+            budgetDayValue.value = this.budgetDay;
+            expensesMonthValue.value = this.expensesMonth;
+            additionalExpensesValue.value = this.addExpenses.join(', ');
+            additionalIncomeValue.value = this.addIncome.join(', ');
+            targetMonthValue.value = Math.ceil(this.getTargetMonth());
             periodSelect.addEventListener('change', function(event){
                 incomePeriodValue.value = appData.budgetMoth * event.target.value; 
              });
@@ -130,34 +141,34 @@ let start = document.getElementById('start'),
         getExpensesMonth: function (){
 
                 for(let key in appData.expenses){
-                    appData.expensesMonth += +appData.expenses[key];
+                    this.expensesMonth += +this.expenses[key];
                 }
 
         },
         getBudget: function () {
-                appData.budgetMoth = appData.budget + appData.incomeMonth - appData.expensesMonth;
-                console.log(appData.budgetMoth);
-                appData.budgetDay = Math.floor(appData.budgetMoth / 30);
+                this.budgetMoth = this.budget + this.incomeMonth - this.expensesMonth;
+                this.budgetDay = Math.floor(this.budgetMoth / 30);
         },
         getTargetMonth: function (){
-                return targetAmount.value / appData.budgetMoth;
+                return targetAmount.value / this.budgetMoth;
         },
         getStatusIncome: function(){
-                if(appData.budgetDay > 800){
+                if(this.budgetDay > 800){
                     return (' Высокий уровень дохода');
-                } else if ( appData.budgetDay > 300){
+                } else if ( this.budgetDay > 300){
                     return ('Средний уровень дохода');
-                } else if ( appData.budgetDay > 0){
+                } else if ( this.budgetDay > 0){
                     return ('  Низкий уровень дохода');
                 } else{
                     return ('Что то пошло не так!');
                 }
         },
         calcPeriod : function (){
-             return appData.budgetMoth * periodSelect.value;
-        }
+             return this.budgetMoth * periodSelect.value;
+        },
     };
     start.addEventListener('click', appData.start);
+    cancel.addEventListener('click', appData.reset);
     expensesPlus.addEventListener('click', appData.addExpensesBlock);
     incomePlus.addEventListener('click', appData.addIncomeBlock);
     periodSelect.addEventListener('change', function(event){
@@ -169,4 +180,4 @@ let start = document.getElementById('start'),
    } else {
        console.log('Цель не будет достигнута');
    }
-          
+   
