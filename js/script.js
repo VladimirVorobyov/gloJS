@@ -160,22 +160,21 @@ AppData.prototype.getStatusIncome = function(){
 AppData.prototype.calcPeriod = function (){
  return this.budgetMoth * periodSelect.value;
 };
-AppData.prototype.eventsListeners = function(){
-    //let startThis = AppData.start.bind(AppData);
-   //let resetThis =  AppData.reset.bind(AppData);
-   //let addExpensesBlockThis = AppData.addExpensesBlock.bind(AppData);
-  // let addIncomeBlockThis = AppData.addIncomeBlock.bind(AppData);
-    const _this = this;
-    start.addEventListener('click', _this.start);
-    cancel.addEventListener('click', _this.reset);
-    expensesPlus.addEventListener('click', _this.addExpensesBlock);
-    incomePlus.addEventListener('click', _this.addExpensesBlock);
+AppData.prototype.eventsListeners = function(x){
+    let startThis = x.start.bind(x);
+    let resetThis =  x.reset.bind(x);
+    let addExpensesBlockThis = x.addExpensesBlock.bind(x);
+    let addIncomeBlockThis = x.addIncomeBlock.bind(x);
+    start.addEventListener('click', startThis);
+    cancel.addEventListener('click', resetThis);
+    expensesPlus.addEventListener('click', addExpensesBlockThis);
+    incomePlus.addEventListener('click', addIncomeBlockThis);
     periodSelect.addEventListener('change', function(event){
         document.querySelector('.period-amount').textContent  = event.target.value; 
      });
-};
-
+    };
 const appData = new AppData();
-appData.eventsListeners();
+
+appData.eventsListeners(appData);
 
 
