@@ -25,6 +25,7 @@ let start = document.getElementById('start'),
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
     incomeItem = document.querySelectorAll('.income-items');
+      
 
     let appData = {
         budget : 0,
@@ -40,17 +41,15 @@ let start = document.getElementById('start'),
         parcentDeposit: 0,
         moneyDeposit: 0,
         start: function() {
-            let appThis = appData.start.bind(appData);
-            console.log(appThis);
             if (salaryAmout.value !== ''){    
-            appData.budget = +salaryAmout.value;
-            appData.getExpenses();
-            appData.getIncome();
-            appData.getExpensesMonth();
-            appData.getAddExpenses();
-            appData.getAddIncome();
-            appData.getBudget();
-            appData.showResult();
+            this.budget = +salaryAmout.value;
+            this.getExpenses();
+            this.getIncome();
+            this.getExpensesMonth();
+            this.getAddExpenses();
+            this.getAddIncome();
+            this.getBudget();
+            this.showResult();
             start.style.display = 'none';
             cancel.style.display = 'inline';
             }
@@ -167,10 +166,14 @@ let start = document.getElementById('start'),
              return this.budgetMoth * periodSelect.value;
         },
     };
-    start.addEventListener('click', appData.start);
-    cancel.addEventListener('click', appData.reset);
-    expensesPlus.addEventListener('click', appData.addExpensesBlock);
-    incomePlus.addEventListener('click', appData.addIncomeBlock);
+    let startThis = appData.start.bind(appData);
+    let resetThis =  appData.reset.bind(appData);
+    let addExpensesBlockThis = appData.addExpensesBlock.bind(appData);
+    let addIncomeBlockThis = appData.addIncomeBlock.bind(appData);
+    start.addEventListener('click', startThis);
+    cancel.addEventListener('click', resetThis);
+    expensesPlus.addEventListener('click', addExpensesBlockThis);
+    incomePlus.addEventListener('click', addIncomeBlockThis);
     periodSelect.addEventListener('change', function(event){
         document.querySelector('.period-amount').textContent  = event.target.value; 
      });
@@ -181,3 +184,4 @@ let start = document.getElementById('start'),
        console.log('Цель не будет достигнута');
    }
    
+
