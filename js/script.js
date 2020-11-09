@@ -14,5 +14,4 @@ class Second extends First {
 }
 const car1 = new First();
 const car2 = new Second();
-car1.hello();
 car2.hello();
