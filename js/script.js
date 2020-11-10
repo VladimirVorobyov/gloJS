@@ -28,7 +28,7 @@ const start = document.getElementById('start'),
      targetAmount = document.querySelector('.target-amount'),
      depositBank = document.querySelector('.deposit-bank'),
      depositAmount = document.querySelector('.deposit-amount'),
-     depositPerxent = document.querySelector('.deposit-percent');
+     depositPercent = document.querySelector('.deposit-percent');
 
 
 
@@ -56,10 +56,13 @@ class AppData {
             this.getExpensesMonth();
             this.getAddExpenses();
             this.getAddIncome();
+            this.getInfoDeposit();
             this.getBudget();
             this.showResult();
+        
             start.style.display = 'none';
             cancel.style.display = 'inline';
+
             }
     }
     reset () {
@@ -205,12 +208,19 @@ class AppData {
     calcPeriod (){
         return this.budgetMoth * periodSelect.value;
     }
+    getInfoDeposit(){
+        if(this.deposit){
+            this.percentDeposit = depositPercent.value;
+            this.moneyDeposit = depositAmount.value;
+        }
+    }
    
     depositHandler(){
         if(depositCheck.checked){
             depositBank.style.display = 'inline-block';
             depositAmount.style.display = 'inline-block'; 
             this.deposit = true;
+           // depositBank.addEventListener('change',)
         } else{
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none'; 
@@ -222,8 +232,11 @@ class AppData {
     }
     depositPx (){
         if(depositBank.value === 'other') {
-            depositPerxent.style.display = 'inline-block';
+            depositPercent.style.display = 'inline-block';
+        } else {
+            depositPercent.style.display = 'none';
         }
+        
     }
 
     eventsListeners(){
@@ -235,7 +248,7 @@ class AppData {
         document.querySelector('.period-amount').textContent  = event.target.value; 
         });
         depositCheck.addEventListener('change', this.depositHandler.bind(this));
-       
+        depositBank.addEventListener('change', this.depositPx.bind(this));
     }
 }
 
