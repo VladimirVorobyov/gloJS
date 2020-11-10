@@ -27,6 +27,8 @@ const start = document.getElementById('start'),
      additionalExpensesItem = document.querySelector('.additional_expenses-item'),
      targetAmount = document.querySelector('.target-amount');
 
+
+
 class AppData {
     constructor(){
         this.budget =0;
@@ -63,6 +65,13 @@ class AppData {
         cancel.style.display = 'none';
         periodSelect.value = 1;
         document.querySelector('.period-amount').textContent  = 1;
+        incomePlus.style.display = 'inline';
+        document.querySelectorAll('.income-items')[1].remove();
+        document.querySelectorAll('.income-items')[1].remove();
+        expensesPlus.style.display = 'inline';
+        document.querySelectorAll('.expenses-items')[1].remove();
+        document.querySelectorAll('.expenses-items')[1].remove();
+       
     }
     showResult (){
         const _this = this;
