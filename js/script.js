@@ -1,5 +1,4 @@
 'use strict';
-
 let  expensesItems = document.querySelectorAll('.expenses-items'),
      incomeItems = document.querySelectorAll('.income-items'),
      incomeItem = document.querySelectorAll('.income-items');
@@ -272,5 +271,3 @@ class AppData {
 const appData = new AppData();
 
 appData.eventsListeners();
-
-
