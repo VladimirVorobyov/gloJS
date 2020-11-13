@@ -1,5 +1,13 @@
 'use strict';
 //задача номер 1 
+/*
+
+const cityArr = {
+  rus: ['Москва', 'Санк-Петербург', 'Новосибирск', 'Екатеринбург', 'Нижний Новгород', 'Казань', 'Челябинск'],
+  uk: ['Киев', 'Харьков', 'Одесса', 'Днепр', 'Донецк', 'Запорожье', 'Львов'],
+  bel: ['Минск', 'Гомель', 'Могилёв', 'Витебск', 'Гродно', 'Брест'],
+  jap: ['Токио', 'Киото', 'Осака', 'Иокогама'] 
+}
 const a = document.getElementById('a'),
       b = document.getElementById('b'),
       sum =document.getElementById('sum'),
@@ -25,6 +33,7 @@ class Calculator {
 
 const appData = new Calculator();
 appData.show();
+*/
 // задача номер 2 
 function getResult(x,y){
   let result,
